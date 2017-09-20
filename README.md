@@ -1,10 +1,10 @@
 # FC_STUDY
 
 ### Android 스터디
-#### [Android](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android)
+#### [Android_ALL](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android)
 
 ### Java 스터디
-#### [Java_All](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Java)
+#### [Java_ALL](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Java)
 
 #### [개념]
 #### [AbstractClassAndInterface](https://github.com/JUWON-KEVIN-LEE/JAVA_STUDY_170911/tree/master/Abstract/src/com/juwon)
