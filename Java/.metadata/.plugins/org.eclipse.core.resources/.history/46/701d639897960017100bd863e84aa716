@@ -1,0 +1,19 @@
+package com.juwon.abstract_study;
+
+abstract class Animal {
+	public abstract String type();
+}
+
+interface a {
+	
+}
+
+class Dog extends Animal {
+	String type = "포유류";
+	public String type() { return type; }
+}
+
+class Bird extends Animal {
+	String type = "조류";
+	public String type() { return type; }
+}

@@ -1,0 +1,17 @@
+package com.juwon.codefight;
+
+class AdjacentElementsProduct {
+	public int adjacentElementsProduct(int[] inputArray) {
+	    int result = 0;
+	    
+	    for(int i = 0; i < inputArray.length; i++) {
+	    	inputArray[i] = Math.abs(inputArray[i]);
+	    }
+
+		return result;
+	}
+	
+	public static void main(String[] args) {
+
+	}
+}

@@ -1,0 +1,29 @@
+package com.juwon.boardProgram;
+
+import java.util.*;
+
+public class Controller {
+	View view;
+	Model model;
+	
+	public void modeSelector(Scanner sc) {
+		String command = sc.nextLine();
+		
+		switch(command) {
+		case "w":
+			String[] memoArray = view.writeMemo(sc);
+			view.printMemo(model.writeMemo(memoArray));
+			break;
+		case "r":
+			break;
+		case "u":
+			break;
+		case "d":
+			break;
+		case "l":
+			break;
+		default:
+			break;
+		}
+	}
+}

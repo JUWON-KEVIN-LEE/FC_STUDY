@@ -1,0 +1,15 @@
+package com.juwon.generic_study;
+
+class GenericMain {
+	public static void main(String[] args) {
+		int[] iar = new int[10];
+		iar[0] = 1;
+		iar[1] = 1;
+		iar[2] = 1;
+		iar[3] = 1;
+		
+		int[] iar2 = new int[20];
+		iar2 = iar.clone(); 
+		System.out.println(iar2.length);
+	}
+}

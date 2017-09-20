@@ -1,0 +1,30 @@
+package com.juwon.generic_study;
+
+import java.lang.reflect.Array;
+
+class List<T> {
+	int count = 0;
+	
+	public List() {
+		Class<T> t = null;
+		int capacity = 16;
+		T[] array = (T[]) Array.newInstance(t, capacity);
+	}
+	
+	public List(int index) {
+		Class<T> t = null;
+		int capacity = index;
+		T[] array = (T[]) Array.newInstance(t, capacity);
+	}
+	
+	public boolean add(T t) {
+		boolean add = false;
+		try {
+			
+		} catch (IndexOutOfBoundsException e) {
+			
+		}
+		
+		return add;
+	}
+}

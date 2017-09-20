@@ -1,0 +1,9 @@
+package com.juwon.generic_study;
+
+class GenericMain {
+	public static void main(String[] args) {
+		int[] iar;
+		int[] iar2 = new int[10];
+		System.out.println(iar.length);
+	}
+}

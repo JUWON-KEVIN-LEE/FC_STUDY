@@ -1,0 +1,46 @@
+package com.juwon.boardProgram;
+
+import java.util.*;
+
+public class Controller {
+	View view;
+	Model model;
+	Memo memo;
+	
+	public void modeSelector(Scanner sc, String command) {
+		while(!(command=="x")) {
+			command = sc.nextLine();
+			switch(command) {
+			case "w":
+				String[] memoArray = view.writeMemo();
+				memo = model.writeMemo(memoArray);
+				view.printMemo(memo);
+				view.workCompleteAndModeSelectMessage();
+				break;
+			case "r":
+				memo = model.readMemo(view.readMessage());
+				view.printMemo(memo);
+				view.workCompleteAndModeSelectMessage();
+				break;
+			case "u":
+				int index = view.updateMessage(sc);
+				Memo memo = model.readMemo(index);
+				view.printMemo(memo);
+				model.updateMemo(view.updateMemoReturn(), index);
+				view.workCompleteAndModeSelectMessage();
+				break;
+			case "d":
+				
+				break;
+			case "l":
+				view.listPrint(model.getMemoList());
+				view.workCompleteAndModeSelectMessage();
+				break;
+			default:
+				view.outroMessage();
+				break;
+			}
+		}
+		return;
+	}
+}

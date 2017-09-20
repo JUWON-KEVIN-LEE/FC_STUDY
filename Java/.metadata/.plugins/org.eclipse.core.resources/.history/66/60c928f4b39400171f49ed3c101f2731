@@ -1,0 +1,70 @@
+package com.juwon.boardProgram;
+
+import java.util.*;
+
+public class View {
+	public String[] writeMemo() {
+		Scanner sc = new Scanner(System.in);
+		String[] memoArray = new String[3];
+		print("|작성자: ");
+		memoArray[0] = sc.nextLine();
+		nextLine();
+		print("|제목: ");
+		memoArray[1] = sc.nextLine();
+		nextLine();
+		print("|내용: ");
+		memoArray[2] = sc.nextLine();
+		nextLine();
+		return memoArray;
+	}
+	public void printMemo(Memo memo) {
+		println("|작성자: " + memo.author);
+		println("|제목: " + memo.subject);
+		println("|내용: " + memo.content);
+	}
+	public void printIndex(Memo memo) {
+		println("|번호: " + memo.index);
+	}
+	public void printDateTime(Memo memo) {
+		println("|작성날짜: " + memo.date);
+		println("|작성시간: " + memo.time);
+	}
+	
+	public int getIndex(Scanner sc) {
+		int index = Integer.parseInt(sc.nextLine());
+		return index;
+	}
+	public void readMessage() {
+		print("읽고 싶은 게시글의 번호를 입력해주세요");
+	}
+	public void readMemo(Memo memo) {
+		printIndex(memo);
+		printMemo(memo);
+		printDateTime(memo);
+	}
+	
+	public String introMessage(Scanner sc) {
+		println("---------- 안녕하세요 반갑습니다 ----------");
+		println("---------- 명령어를 입력해주세요 ----------");
+		println("| w : 쓰기 | r : 읽기 | u : 수정 | d : 삭제 | l : 리스트 | x : 종료 |");
+		print(">>>"); String command = sc.nextLine(); println("");
+		println("-----------------------------------");
+		return command;
+	}
+	public void outroMessage() {
+		println("---------- 프로그램이 종료됩니다 ----------");
+	}
+	public void workCompleteAndModeSelectMessage() {
+		println("---------- 작업이 완료되었습니다 ----------");
+		println("------ 다음 작업의 명령어를 입력해주세요 ------");
+	}	
+	public void print(String str) {
+		System.out.print(str);
+	}
+	public void println(String str) {
+		System.out.println(str);
+	}
+	public void nextLine() {
+		System.out.println();
+	}
+}

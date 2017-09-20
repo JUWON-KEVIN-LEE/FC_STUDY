@@ -1,0 +1,7 @@
+package com.juwon.annotation_study;
+
+class AnnotationMain {
+	public static void main(String[] args) {
+
+	}
+}

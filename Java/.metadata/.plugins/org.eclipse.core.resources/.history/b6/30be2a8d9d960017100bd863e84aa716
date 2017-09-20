@@ -1,0 +1,15 @@
+package com.juwon.generic_study;
+
+import java.util.*;
+
+class GenericMain {
+	public static void main(String[] args) {
+
+	}
+}
+
+class ArrayList<T> {
+	public ArrayList() {
+		List<T> list = new List<>();
+	}
+}

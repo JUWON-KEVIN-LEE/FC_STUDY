@@ -1,0 +1,24 @@
+package com.juwon.codefight;
+
+class AdjacentElementsProduct {
+	public int adjacentElementsProduct(int[] inputArray) {
+	    int[] resultArray = new int[inputArray.length - 1];
+	    int result = 0;
+	    for(int i = 1; i < inputArray.length; i++) {
+	    	resultArray[i-1] = inputArray[i-1] * inputArray[i];
+	    }
+	    
+	    for(int i = 1; i < resultArray.length; i++) {
+	    	if(resultArray[i-1] > resultArray[i])
+	    		result = resultArray[i-1];
+	    	else
+	    		result = resultArray[i];
+	    }
+	    
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,15 @@
+package com.juwon.generic_study;
+
+import java.util.*;
+
+public class ArrList<T> {
+	
+	public ArrList() {
+		List<T> list;
+		
+	}
+	
+	public static void main(String[] args) {
+
+	}
+}

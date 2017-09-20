@@ -1,0 +1,13 @@
+package com.juwon.generic_study;
+
+import java.util.*;
+public class ArrList<T> {
+	
+	public ArrList() {
+		List<T> list = new List<>();
+	}
+	
+	public static void main(String[] args) {
+
+	}
+}

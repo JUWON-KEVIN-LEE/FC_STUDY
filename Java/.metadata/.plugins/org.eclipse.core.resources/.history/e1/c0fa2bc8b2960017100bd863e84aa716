@@ -1,0 +1,13 @@
+package com.juwon.generic_study;
+
+class NewList<T> {
+	private Object list[];
+	
+	public NewList() {
+		list = new Object[1];
+	}
+	public void add(T item) {
+		Object tempList[] = new Object[size() + 1];
+		
+	}
+}

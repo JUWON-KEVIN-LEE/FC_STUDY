@@ -1,0 +1,32 @@
+package com.juwon.generic_study;
+
+import java.util.*;
+
+public class ArrList<T> {
+	public ArrList() {
+	}
+	
+	private T[] array;
+	
+	public boolean add(T t) {
+		boolean add = false;
+		
+		
+		
+		return add;
+	}
+	
+	public int size() {
+		return list.size();
+	}
+	
+	public T get(int index) {
+		T t;
+		t = list.get(index);
+		return t;
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<Integer> list = new ArrayList<>();
+	}
+}

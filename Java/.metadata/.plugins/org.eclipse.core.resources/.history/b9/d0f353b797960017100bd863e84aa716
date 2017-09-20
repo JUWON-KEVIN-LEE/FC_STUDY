@@ -1,0 +1,49 @@
+package com.juwon.abstract_study;
+
+abstract class Animal implements a {
+	public abstract String type();
+}
+
+interface a { // 강제성을 부여..
+	void create();
+	void delete();
+	void list();
+	void update();
+	void read();
+}
+
+class Dog extends Animal {
+	String type = "포유류";
+	public String type() { return type; }
+	
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void list() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void read() {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+class Bird extends Animal {
+	String type = "조류";
+	public String type() { return type; }
+}

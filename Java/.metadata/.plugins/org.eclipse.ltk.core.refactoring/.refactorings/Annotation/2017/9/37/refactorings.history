@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;AnnotationMain.java&apos; to &apos;Annotation/src/com.juwon.annotation_study&apos;&#x0D;&#x0A;- Original project: &apos;Annotation&apos;&#x0D;&#x0A;- Destination element: &apos;Annotation/src/com.juwon.annotation_study&apos;&#x0D;&#x0A;- Original element: &apos;AnnotationMain.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.juwon.annotation_study" element1="/src&lt;{AnnotationMain.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1505109356615" units="1" version="1.0"/>
+</session>

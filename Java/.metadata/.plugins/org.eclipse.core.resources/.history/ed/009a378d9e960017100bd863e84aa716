@@ -1,0 +1,18 @@
+package com.juwon.generic_study;
+
+import java.util.*;
+
+public class ArrList<T> {
+	private List<T> list;
+	
+	public boolean add(T t) {
+		boolean b = false;
+		list.add(t);
+		return b;
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<Integer> list = new ArrayList<>();
+		list.
+	}
+}

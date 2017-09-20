@@ -1,0 +1,24 @@
+package com.juwon.boardProgram;
+
+import java.util.*;
+
+public class Controller {
+	public void modeSelector(Scanner sc) {
+		String command = sc.nextLine();
+		
+		switch(command) {
+		case "w":
+			break;
+		case "r":
+			break;
+		case "u":
+			break;
+		case "d":
+			break;
+		case "l":
+			break;
+		default:
+			break;
+		}
+	}
+}

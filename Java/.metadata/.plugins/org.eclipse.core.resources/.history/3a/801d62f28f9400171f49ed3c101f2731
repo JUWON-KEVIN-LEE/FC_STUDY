@@ -1,0 +1,7 @@
+package com.juwon.boardProgram;
+
+public class Memo {
+	String author;
+	String subject;
+	String content;
+}

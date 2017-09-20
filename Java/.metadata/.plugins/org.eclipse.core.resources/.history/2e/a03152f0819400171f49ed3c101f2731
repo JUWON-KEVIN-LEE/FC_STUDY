@@ -1,0 +1,9 @@
+package com.juwon.boardProgram;
+
+import java.util.*;
+
+public class Controller {
+	public void modeSelector(Scanner sc) {
+		sc.
+	}
+}

@@ -1,0 +1,32 @@
+package com.juwon.boardProgram;
+
+import java.util.*;
+
+public class Controller {
+	View view;
+	Model model;
+	
+	public void modeSelector(String command) {
+		while(!(command="x")) {
+			switch(command) {
+			case "w":
+				String[] memoArray = view.writeMemo();
+				Memo memo = model.writeMemo(memoArray);
+				view.printIndex(memo);
+				view.printMemo(memo);
+				view.printDateTime(memo);
+				view.workCompleteAndModeSelectMessage();
+				break;
+			case "r":
+				
+				break;
+			case "u":
+				break;
+			case "d":
+				break;
+			case "l":
+				break;
+			}
+		}
+	}
+}
