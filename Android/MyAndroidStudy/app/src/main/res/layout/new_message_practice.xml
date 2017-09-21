@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/holo_orange_light"
+        android:padding="4dp"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <TextView
+        android:id="@+id/newM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/imageView"
+        android:text="새로운 메시지가 도착하였습니다"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="8dp"
+        android:text="보기" />
+</RelativeLayout>
