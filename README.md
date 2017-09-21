@@ -10,6 +10,7 @@
 
 #### [미니 프로젝트]
 #### [Memo_APP](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/AndroidMemo)
+#### [Memo_APP_DB](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/AndroidMemo2)
 
 ##### -------------------------------------------------------------------------------------------
 
