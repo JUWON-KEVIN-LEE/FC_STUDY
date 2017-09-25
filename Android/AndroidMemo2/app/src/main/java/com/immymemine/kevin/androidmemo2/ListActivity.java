@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.immymemine.kevin.androidmemo2.domain.Note;
 import com.immymemine.kevin.androidmemo2.domain.NoteDAO;
@@ -60,19 +61,27 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         noteDAO = new NoteDAO(this);
     }
-    public void create() {
+    private Note getNoteFromScreen() {
         String title = editTitle.getText().toString();
         String content = editContent.getText().toString();
-
-        String query = " insert into note (title, content, n_datetime)" +
-                " values('"+title+"',"+"'"+content+"', datetime('now', 'localtime'))";
-
-        noteDAO.create(query);
-        // 입력 화면 초기화
-        editTitle.setText("");
-        editContent.setText("");
+        // Note 객체를 생성해서 값을 담아준다
+        Note note = new Note(title, content);
+        return note;
+    }
+    public void create(Note note) {
+        noteDAO.create(note);
+    }
+//  -----------------------------------------------------------------------
+    private void afterCreate() {
+        // 등록 완료 Noti
+        showInfo("등록되었습니다");
         // 목록 갱신
         read();
+        // 입력창 초기화
+        resetScreen();
+    }
+    private void showInfo(String comment) {
+        Toast.makeText(this, comment, Toast.LENGTH_LONG);
     }
     public void read() {
         String query = " select * from note";
@@ -80,6 +89,10 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         resultView.setText("");
         for(Note note : list)
             resultView.append(note.toString());
+    }
+    private void resetScreen() {
+        editTitle.setText("");
+        editContent.setText("");
     }
 
     @Override
@@ -107,7 +120,8 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.create:
-                create();
+                create(getNoteFromScreen());
+                afterCreate();
                 break;
             case R.id.read:
                 read();

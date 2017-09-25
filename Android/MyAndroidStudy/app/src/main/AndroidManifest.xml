@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.immymemine.kevin.myandroidstudy">
 
+    <!-- 권한 설정 -->
+    <!-- Runtime Permission -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 안해도 되지만... -->
+    <!-- System Permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +25,10 @@
         </activity>
         <activity android:name=".Inflation2" />
         <activity android:name=".SetParameter" />
+        <activity android:name=".GridLayout" />
+        <activity android:name=".GradientPractice" />
+        <activity android:name=".Permissions" />
+        <activity android:name=".BaseActivity"></activity>
     </application>
 
 </manifest>

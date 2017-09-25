@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.File;
 
 public class Inflation2 extends AppCompatActivity {
     Button btn;
@@ -16,8 +19,8 @@ public class Inflation2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inflation2);
         btn = (Button)findViewById(R.id.new_message);
-
-
+        File file = new File("asdas.txt");
+        
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,9 +32,12 @@ public class Inflation2 extends AppCompatActivity {
                     rel.setBackgroundColor(Color.LTGRAY);
                     TextView newMessageNoti = (TextView) rel.findViewById(R.id.newM);
                     TextView textOpen = (TextView) rel.findViewById(R.id.textOpen);
+                    ImageView imageView = (ImageView) rel.findViewById(R.id.imageView);
+
                     newMessageNoti.setTextColor(Color.WHITE);
                     textOpen.setTextColor(Color.WHITE);
                 }
+
                 linear.addView(rel);
             }
         });

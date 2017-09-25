@@ -46,7 +46,8 @@ public class Inflation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent(v.getContext(), Inflation2.class);
-                Intent intent = new Intent(v.getContext(), SetParameter.class);
+                //Intent intent = new Intent(v.getContext(), SetParameter.class);
+                Intent intent = new Intent(v.getContext(), GradientPractice.class);
                 startActivity(intent);
             }
         });

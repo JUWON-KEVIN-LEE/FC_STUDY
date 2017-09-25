@@ -10,8 +10,19 @@ public class Note {
     String n_datetime;
     String content;
     final String DELIMETER = " | ";
+
+    public Note() {
+
+    }
+
+    public Note(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return id + DELIMETER + title +DELIMETER + n_datetime + DELIMETER + content + "\n";
+
     }
 }

@@ -22,8 +22,10 @@ public class NoteDAO {
     }
 
     // C 생성
-    public void create(String query) {
+    public void create(Note note) {
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        String query = " insert into note (title, content, n_datetime)" +
+                " values('"+ note.title +"',"+"'"+ note.content +"', datetime('now', 'localtime'))";
         sqLiteDatabase.execSQL(query);
         sqLiteDatabase.close();
     }
