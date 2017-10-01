@@ -19,6 +19,7 @@ public class GalleryActivity extends AppCompatActivity {
     GalleryAdapter adapter;
     List<String> thumb;
     Map<String, String> content;
+    Cursor cursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class GalleryActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        cursor.close();
     }
 
     // Content Resolver 를 통해서 이미지 목록을 가져온다
@@ -43,11 +45,12 @@ public class GalleryActivity extends AppCompatActivity {
         ContentResolver resolver = getContentResolver();
         Uri uri = MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI; // 시간 순서대로 uri 값 가져와진다...
         String[] projections = { MediaStore.Images.Thumbnails.DATA };
-        Cursor cursor = resolver.query(uri, projections, null, null, null);
+        cursor = resolver.query(uri, projections, null, null, null);
 
         if(cursor != null) {
-            while(cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 String path = cursor.getString(cursor.getColumnIndex(projections[0]));
+                System.out.println("aa = "+path);
                 list.add(path);
             }
         }

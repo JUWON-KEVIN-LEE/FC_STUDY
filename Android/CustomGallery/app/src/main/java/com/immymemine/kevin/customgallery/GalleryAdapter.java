@@ -38,14 +38,15 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.Holder> 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         // 썸네일
-        Uri uri = Uri.parse(thumbnailData.get(position));
-        holder.setImage(uri);
+//        Uri uri = Uri.parse(thumbnailData.get(position));
+//        holder.setImage(uri);
         // 실 사진
         String[] paths = contentData.keySet().toArray(new String[contentData.size()]);
 //        for(String s : paths)
 //            System.out.println("paths = " + s);
         String content = paths[position];
         System.out.println(position);
+        holder.setImage(Uri.parse(content));
         holder.setContent(Uri.parse(content));
         // 날짜 정보
         String datetime = contentData.get(content);
@@ -55,7 +56,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.Holder> 
     }
     @Override
     public int getItemCount() {
-        return thumbnailData.size();
+        return contentData.size();
     }
 
     class Holder extends RecyclerView.ViewHolder {

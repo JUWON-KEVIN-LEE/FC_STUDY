@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TabLayout</string>
+    
+    <string name="one">하나</string>
+    <string name="two">둘</string>
+    <string name="three">셋</string>
+    <string name="four">넷</string>
+    <string name="five">다섯</string>
+    <string name="six">여섯</string>
+    <string name="seven">일곱</string>
+</resources>

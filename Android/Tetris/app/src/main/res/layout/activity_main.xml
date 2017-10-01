@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.immymemine.kevin.tetris.MainActivity">
+
+    <Button
+        android:id="@+id/downBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:onClick="onClick"
+        android:text="down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rightBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/leftBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/downBtn"
+        android:layout_alignBottom="@+id/downBtn"
+        android:layout_toLeftOf="@+id/downBtn"
+        android:layout_toStartOf="@+id/downBtn"
+        android:onClick="onClick"
+        android:text="left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/upBtn"
+        app:layout_constraintTop_toBottomOf="@+id/rightBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/rightBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/downBtn"
+        android:layout_alignBottom="@+id/downBtn"
+        android:layout_toEndOf="@+id/downBtn"
+        android:layout_toRightOf="@+id/downBtn"
+        android:onClick="onClick"
+        android:text="right"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="386dp" />
+
+    <Button
+        android:id="@+id/upBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/downBtn"
+        android:layout_alignLeft="@+id/downBtn"
+        android:layout_alignStart="@+id/downBtn"
+        android:onClick="onClick"
+        android:text="up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/downBtn"
+        app:layout_constraintTop_toBottomOf="@+id/rightBtn"
+        app:layout_constraintVertical_bias="1.0" />
+</RelativeLayout>
