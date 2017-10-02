@@ -7,10 +7,15 @@
 #### [Basic_Layout](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/BasicLayout)
 #### [Basic_Widget](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/BasicWidget)
 #### [Basic_List](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/BasicList)
+#### [Basic_Fragment](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/FragmentBasic)
+#### [View Pager](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/ViewPager)
+#### [TabLayout](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/TabLayout)
+#### [Basic_Thread](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/ThreadBasic)
 
 #### [미니 프로젝트]
 #### [Memo_APP](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/AndroidMemo)
 #### [Memo_APP_DB](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/AndroidMemo2)
+#### [Custom Gallery](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/CustomGallery)
 #### [TETRIS](https://github.com/JUWON-KEVIN-LEE/FC_STUDY/tree/master/Android/TetrisGame)
 
 ##### -------------------------------------------------------------------------------------------
