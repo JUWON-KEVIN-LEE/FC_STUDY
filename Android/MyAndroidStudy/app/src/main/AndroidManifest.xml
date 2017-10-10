@@ -16,15 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".inflation.Inflation">
-        </activity>
+        <activity android:name=".inflation.Inflation"></activity>
         <activity android:name=".inflation.Inflation2" />
         <activity android:name=".inflation.SetParameter" />
         <activity android:name=".layout.GridLayout" />
-        <activity android:name=".drawing.GradientPractice" />
+        <activity android:name=".Output.GradientPractice" />
         <activity android:name=".permission.Permissions" />
-        <activity android:name=".activity_animation.ActivityAnimation" />
-        <activity android:name=".drawing.DrawingActivity">
+        <activity android:name=".Output.DrawingActivity">
+        </activity>
+        <activity android:name=".Output.BitmapDrawable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

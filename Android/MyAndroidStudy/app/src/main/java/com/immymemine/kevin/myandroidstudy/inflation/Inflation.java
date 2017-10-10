@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.immymemine.kevin.myandroidstudy.drawing.GradientPractice;
+import com.immymemine.kevin.myandroidstudy.Output.GradientPractice;
 import com.immymemine.kevin.myandroidstudy.R;
 
 public class Inflation extends AppCompatActivity {

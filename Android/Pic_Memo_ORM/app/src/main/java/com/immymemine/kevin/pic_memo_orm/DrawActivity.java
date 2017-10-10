@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,12 +107,8 @@ public class DrawActivity extends AppCompatActivity {
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String filename = editTitle.getText().toString();
-                if(filename.equals("")) {
-                    Log.d("finish",filename);
-                    finish();
-                }
-                PicNote note = setInfoToPicNote(filename);
+                String title = editTitle.getText().toString();
+                PicNote note = setInfoToPicNote(title);
                 captureCanvas(note.getBitmap_path());
                 dao.create(note);
                 finish();
@@ -131,10 +126,10 @@ public class DrawActivity extends AppCompatActivity {
         }
         bitmap.recycle();
     }
-    private PicNote setInfoToPicNote(String filename) {
+    private PicNote setInfoToPicNote(String title) {
         PicNote note = new PicNote();
-        note.setTitle(filename);
-        note.setBitmap_path(filename + ".jpg");
+        note.setTitle(title);
+        note.setBitmap_path(title + sdf.format(System.currentTimeMillis()) +  ".jpg");
         note.setPn_datetime(sdf.format(System.currentTimeMillis()));
         return note;
     }

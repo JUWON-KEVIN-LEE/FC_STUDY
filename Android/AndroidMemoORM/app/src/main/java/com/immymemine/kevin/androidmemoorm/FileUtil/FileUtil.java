@@ -24,7 +24,6 @@ public class FileUtil {
      * @param bitmap 그림 파일
      * @throws IOException
      */
-    Context context;
     public static void write(Context context, String fileName, Bitmap bitmap) throws IOException {
         FileOutputStream fos = null;
         try {

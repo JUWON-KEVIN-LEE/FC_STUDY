@@ -144,6 +144,7 @@ class CustomAdapter extends BaseAdapter {
         public void setPosition(int position) {
             this.position = position;
         }
+
         Intent intent = new Intent(context, DetailActivity.class);
         public void initListener(View convertView) {
             convertView.setOnClickListener(new View.OnClickListener() {
@@ -154,5 +155,6 @@ class CustomAdapter extends BaseAdapter {
                 }
             });
         }
+
     }
 }

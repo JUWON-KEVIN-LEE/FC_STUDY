@@ -3,8 +3,8 @@ package com.immymemine.kevin.tetrisgame;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 
 /**
  * Created by quf93 on 2017-09-29.
@@ -18,16 +18,18 @@ public class Controller extends View {
     Stage stage;
     // 미리보기 < Controller 에서 그려준다
     Preview preview;
-    Button resetBtn;
-    public Controller(Context context, Setting setting) {
+    Handler handler;
+    public Controller(Context context, Setting setting, Handler handler) {
         super(context);
         this.context = context;
         this.setting = setting;
+        this.handler = handler;
         // TODO
         stage = new Stage(1, 0, 12, 16, setting.unit);
         preview = new Preview(14, 1, 4, 4, setting.unit);
         // preview 에 block 넣고.. stage 로 넘기고 다시 preview 에 block 만들어 넣기..
         init();
+
     }
 
     @Override
@@ -114,25 +116,20 @@ public class Controller extends View {
         }.start();
     }
     boolean checkLose = false;
-
+    private final int LOSE = 1771;
     public boolean lose() {
+        //핸들러에 메시지
+        handler.sendEmptyMessage(LOSE);
         stopGame();
-        switchResetButtonVisibility();
         checkLose = true;
         return checkLose;
         // 화면을 회색으로 ... ok
-        // 대화 상자 띄워서 다시하겠습니까?
-        // 다시하기를 누르면... stage 초기화
-        // 아니오(게임 종료) 하면 앱을 종료
     }
 
-    private void switchResetButtonVisibility() {
-        resetBtn = (Button) findViewById(R.id.resetBtn);
-        if(resetBtn.getVisibility() == INVISIBLE)
-            resetBtn.setVisibility(VISIBLE);
-        else
-            resetBtn.setVisibility(INVISIBLE);
-    }
+//    private void switchResetButtonVisibility() {
+//        MainActivity activity = (MainActivity)context;
+//            activity.changeVisibilityResetButton();
+//    }
 
     public void reset() {
         checkLose = false;

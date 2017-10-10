@@ -40,11 +40,13 @@ public class DrawActivity extends AppCompatActivity {
         dao = new PicNote_DAO(this);
     }
     private void initView() {
+        // view 선언
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
         stage = (FrameLayout)findViewById(R.id.stage);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBarResultView = (TextView) findViewById(R.id.seekBarResultView);
         saveBtn = (Button)findViewById(R.id.saveBtn);
+
         prog = 50;
         drawView = new DrawView(this);
         drawView.init();

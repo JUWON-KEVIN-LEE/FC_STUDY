@@ -15,13 +15,18 @@ import com.immymemine.kevin.androidmemoorm.model.PicNote;
 import java.io.IOException;
 import java.util.List;
 
+import static com.immymemine.kevin.androidmemoorm.R.id.bmView;
+
 /**
  * Created by quf93 on 2017-09-22.
  */
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.Holder> {
     List<PicNote> data = null;
-
+    Context context;
+    public CustomAdapter(Context context) {
+        this.context = context;
+    }
     public void setData(List<PicNote> data) {
         this.data = data;
     }
@@ -41,25 +46,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.Holder> {
     public void onBindViewHolder(Holder holder, int position) {
         PicNote picNote = data.get(position);
         try {
-            holder.setBitmapView(FileUtil.read(holder.getContxt(),picNote.getBitmap_path()));
+            holder.setBitmapView(FileUtil.read(context,picNote.getBitmap_path()));
         } catch (IOException e) {
-            Toast.makeText(holder.getContxt(), "Error = "+e.toString(), Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Error = "+e.toString(), Toast.LENGTH_SHORT);
+        } catch (NullPointerException e) {
+
         }
     }
 
     public class Holder extends RecyclerView.ViewHolder {
-        ImageView bitmapView;
-        Context context;
+        ImageView bmView;
         public Holder(View itemView) {
             super(itemView);
-            bitmapView = (ImageView) itemView.findViewById(R.id.bitmapView);
-            context = itemView.getContext();
-        }
-        public Context getContxt() {
-            return context;
+            bmView = (ImageView) itemView.findViewById(bmView);
         }
         private void setBitmapView(Bitmap bitmap) {
-            bitmapView.setImageBitmap(bitmap);
+            bmView.set
         }
     }
 }

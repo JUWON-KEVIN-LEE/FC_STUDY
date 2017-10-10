@@ -19,14 +19,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // 앱 버전 체크
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            chechPermission();
+            checkPermission();
         } else {
             init();
         }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    private void chechPermission() {
+    private void checkPermission() {
         // 1. 권한이 있느지 여부 확인
         if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) // 호환성 문제 My api 16... func api 23...
                 == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)

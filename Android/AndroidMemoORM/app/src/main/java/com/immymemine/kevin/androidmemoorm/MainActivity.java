@@ -22,7 +22,6 @@ import java.util.List;
  *  5. RecyclerView 에 LayoutManager 를 설정
  */
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    public void openDraw(View view) {
+    public void clickedPostButton(View view) {
+        // post 클릭시 draw 할 수 있는 화면으로 이동
         Intent intent = new Intent(this, DrawActivity.class);
         startActivity(intent);
     }
@@ -38,24 +38,15 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         // DAO 초기화
         PicNote_DAO dao = new PicNote_DAO(this);
-        // 테스트 데이터
-//        for(int i=0; i<1000; i++) {
-//            PicNote picNote = new PicNote();
-//            picNote.setTitle("안녕하세요 " + i + "번");
-//            picNote.setDatetime(System.currentTimeMillis());
-//
-//            dao.create(picNote);
-//        }
         // 데이터를 읽어와서 저장소에 저장
         List<PicNote> data = dao.readAll();
         // 아답터 초기화
-        CustomAdapter adapter = new CustomAdapter(MainActivity.this);
+        CustomAdapter adapter = new CustomAdapter(this);
         adapter.setData(data);
         // 아답터와 RecyclerView 와 연결
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         // RecyclerView 에 LayoutManager 를 설정
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 }

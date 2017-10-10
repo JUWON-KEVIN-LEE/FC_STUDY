@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -70,9 +71,11 @@ public class FileUtil {
         }
     }
 
-    private static byte[] bitmapToByteArray(Bitmap bitmap) {
-        if (bitmap == null)
+    public static byte[] bitmapToByteArray(Bitmap bitmap) {
+        if (bitmap == null) {
+            Log.d("bitmapToByteArray", "null");
             return null;
+        }
 
         byte[] byteArray = null;
 
