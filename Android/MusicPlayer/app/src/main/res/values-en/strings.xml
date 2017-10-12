@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="tab_element1">Music</string>
+    <string name="tab_element2">Album</string>
+    <string name="tab_element3">Artist</string>
+    <string name="tab_element4">Genre</string>
+</resources>

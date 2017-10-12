@@ -7,6 +7,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by quf93 on 2017-10-10.
@@ -15,26 +17,29 @@ import java.util.List;
 public class CustomView extends View {
     Paint paint;
     List<MainActivity.RainDrop> rainDrops = new ArrayList<>();
+    private final Lock lock;
     public CustomView(Context context) {
         super(context);
         paint = new Paint();
         paint.setAntiAlias(true);
+        lock = new ReentrantLock();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(rainDrops.size() > 0) {
-            for(int i=0; i<rainDrops.size(); i++) {
+//            try {
+//                lock.lock();
+            for (int i = 0; i < rainDrops.size(); i++) {
                 MainActivity.RainDrop rainDrop = rainDrops.get(i);
                 paint.setColor(rainDrop.color);
                 paint.setAlpha(rainDrop.alpha);
                 canvas.drawCircle(rainDrop.x, rainDrop.y, rainDrop.radius, paint);
             }
-
-            if(rainDrops.size() > 200) {
-
-            }
+//            } finally {
+//                lock.unlock();
+//            }
         }
     }
 
@@ -54,7 +59,18 @@ public class CustomView extends View {
 //    }
 
     public void addRainDrop(MainActivity.RainDrop rainDrop) {
-        rainDrops.add(rainDrop);
-        rainDrop.start();
+//        try {
+//            lock.lock();
+            rainDrops.add(rainDrop);
+//            rainDrop.start();
+//        } finally {
+//            lock.unlock();
+//        }
+    }
+
+    public void remove() {
+        for(int i=0; i<rainDrops.size(); i++)
+            rainDrops.remove(rainDrops.get(i));
+//            rainDrops.remove(i);
     }
 }

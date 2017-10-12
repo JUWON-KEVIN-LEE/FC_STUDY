@@ -47,14 +47,24 @@ public class MainActivity extends Activity {
     }
 
     boolean mode = false;
-
+    int count = 0;
     public void modeChange(View view) {
         if(mode == false) {
             mode = true;
             new Thread() {
                 public void run() {
                     while(mode) {
-                        addRainDrop();
+                        addRainDrop().start();
+                        count++;
+                        if(count > 100) {
+                            customView.remove();
+                            count -= 100;
+                            try {
+                                Thread.sleep(400);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
@@ -69,10 +79,11 @@ public class MainActivity extends Activity {
 
     }
 
-    public void addRainDrop() {
+    public RainDrop addRainDrop() {
         rainDrop = new RainDrop(random.nextInt((int) width), 0,
                 random.nextInt(5), random.nextInt(20), getRandomColor(), random.nextInt(200));
         customView.addRainDrop(rainDrop);
+        return rainDrop;
     }
 
     @Override
