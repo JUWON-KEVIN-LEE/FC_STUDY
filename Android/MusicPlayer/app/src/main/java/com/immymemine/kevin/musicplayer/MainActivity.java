@@ -15,65 +15,59 @@ import android.widget.TextView;
 import com.immymemine.kevin.musicplayer.model.SongContent;
 import com.immymemine.kevin.musicplayer.player.MusicPlayer;
 import com.immymemine.kevin.musicplayer.player.PlayerActivity;
+import com.immymemine.kevin.musicplayer.player.SeekBarThread;
 import com.immymemine.kevin.musicplayer.utilities.BaseActivity;
 import com.immymemine.kevin.musicplayer.utilities.CircleImageView;
 import com.immymemine.kevin.musicplayer.utilities.Const;
 import com.immymemine.kevin.musicplayer.view_pagers.MusicFragment;
 import com.immymemine.kevin.musicplayer.view_pagers.ViewPagerAdapter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MusicFragment.OnListFragmentInteractionListener{
+public class MainActivity extends BaseActivity implements MusicFragment.OnListFragmentInteractionListener, SeekBarThread.IObserver {
     ViewPager viewPager;
     TabLayout tabLayout;
-    SongContent songContent;
     CircleImageView civ_album;
     ImageButton ibPre, ibStart, ibNext;
     TextView tv_time, tv_duration;
+
+    int now = Const.STAT_ISSTOP;
     int currentPosition, limitPosition;
+    MusicPlayer musicPlayer;
+    SeekBarThread thread;
 
     @Override
     public void init() {
         setContentView(R.layout.activity_main);
-        // external storage 에서 date 가져와서 static ITEMS 에 담아주기
-        songContent = new SongContent();
-        songContent.setList(this);
-        limitPosition = songContent.ITEMS.size();
         // ui
         initView();
         initTabLayout();
         initViewPager();
-        //
+        // player setting
         initPlayer();
         initListener();
     }
+    @Override
+    protected void onStart() {
+        // external storage 에서 date 가져와서 static ITEMS 에 담아주기
+        initData();
+        throwMeToThread();
+        super.onStart();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == Const.REQUEST_CODE) {
-            currentPosition = data.getIntExtra(Const.KEY_POSITION, -1);
-            now = data.getIntExtra(Const.STAT, -1);
-            refreshPlayButton();
-            setDuration();
-        }
+    public void finish() {
+        thread.setStop();
+        super.finish();
     }
+    // resume 할 때 musicplayer 로 부터 상태를 받아와라!
 
-    private void setDuration() {
-        SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
-        String duration = sdf.format(musicPlayer.getDuration());
-        tv_duration.setText(duration);
-    }
-
-    private void refreshPlayButton() {
-        if(now == Const.STAT_ISPLAYING)
-            ibStart.setImageResource(android.R.drawable.ic_media_pause);
-        else
-            ibStart.setImageResource(android.R.drawable.ic_media_play);
-    }
-
+    // init view methods
     private void initView() {
         tv_time = (TextView) findViewById(R.id.tv_time);
         tv_duration = (TextView) findViewById(R.id.durationView);
@@ -105,30 +99,24 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
-    @Override
-    public void playMusicPlayer(int position) {
-        currentPosition = position;
-        playMP(position);
-        setDuration();
+    // external storage 에서 songs 가져와서 data 에 setting < onStart()
+    private void initData() {
+        SongContent songContent = SongContent.getInstance();
+        songContent.setList(this);
+        limitPosition = SongContent.ITEMS.size();
     }
-
-    // 앨범 아트 클릭시 이동
-    Intent intent = null;
-    private void moveToPlayerActivity() {
-        if(intent == null)
-            intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra(Const.KEY_POSITION, currentPosition);
-        intent.putExtra(Const.STAT, now);
-        startActivityForResult(intent, Const.REQUEST_CODE);
+    private void throwMeToThread() {
+        thread = SeekBarThread.getInstance();
+        thread.add(this);
+        thread.start();
     }
 
     // player 와 연결
     Intent serviceIntent;
     private void initPlayer() {
         currentPosition = 0;
-        // civ_album.setImageURI(data.get(Const.DEFAULT_POSITION).albumUri);
         serviceIntent = new Intent(this, MusicPlayer.class);
-        serviceIntent.putExtra(Const.KEY_POSITION, currentPosition);
+        serviceIntent.putExtra(Const.KEY_POSITION, currentPosition); // 최초에 연결시 position 값을 0으로 전달
         startService(serviceIntent);
         bindService();
     }
@@ -138,50 +126,58 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
     private void unBindService() {
         unbindService(con);
     }
-    boolean isService = false;
-    MusicPlayer musicPlayer;
     ServiceConnection con = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            isService = true;
             musicPlayer = ((MusicPlayer.CustomBinder)service).getMusicPlayer();
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName name) {
-            isService = false;
-        }
+        public void onServiceDisconnected(ComponentName name) { }
     };
 
-    private void playMP() {
-        if(now == Const.STAT_ISSTOP) {
-            now = Const.STAT_ISPLAYING;
-            musicPlayer.play(currentPosition);
-            refreshPlayButton();
-        } else {
-            now = Const.STAT_ISSTOP;
-            musicPlayer.pause();
-            refreshPlayButton();
-        }
-    }
-    private void playMP(int position) {
+    // action 에 따른 view refresh methods
+    private void togglePlayButton() {
         if(now == Const.STAT_ISPLAYING)
-            musicPlayer.move(position);
-        else {
-            now = Const.STAT_ISPLAYING;
-            musicPlayer.play(position);
-            refreshPlayButton();
-        }
+            ibStart.setImageResource(android.R.drawable.ic_media_pause);
+        else
+            ibStart.setImageResource(android.R.drawable.ic_media_play);
+    }
+    private void setDuration() {
+        tv_duration.setText(musicPlayer.getDuration());
+    }
+    private void setAlbumArt() {
+        // civ_album.setImageResource(.......);
     }
 
-    int now = Const.STAT_ISSTOP;
+    // holder onClickListener 에 의한 method 실행
+    @Override
+    public void playMusicPlayer(int position) {
+        currentPosition = position; // 클릭된 position 값 (+/실행되고 있는 position 값)을 main 에서도 가지고 있도록
+        now = Const.STAT_ISPLAYING;
+        sendCommandToService(Const.PLAY, currentPosition);
+    }
+    private void sendCommandToService(String cmd, int currentPosition) {
+        musicPlayer.getCommand(cmd, currentPosition);
+        // refresh view
+        togglePlayButton();
+        setDuration();
+        // setAlbumArt();
+    }
+
     private void initListener() {
         // 재생 버튼 클릭
         ibStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playMP();
-                setDuration();
+                if(now == Const.STAT_ISPLAYING) {
+                    now = Const.STAT_ISSTOP;
+                    sendCommandToService(Const.PAUSE, currentPosition);
+                } else {
+                    now = Const.STAT_ISPLAYING;
+                    sendCommandToService(Const.PLAY, currentPosition);
+                }
+                // pause 상태였는지 아니면 아예 stop 이었는지 판단해서..?
             }
         });
 
@@ -192,10 +188,13 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
                     currentPosition = 0;
                 else
                     currentPosition += 1;
-//                if(now == Const.STAT_ISPLAYING) {
-                musicPlayer.move(currentPosition);
+                if( "00:00".equals(tv_time.getText().toString()) && now == Const.STAT_ISPLAYING)
+                    sendCommandToService(Const.NEXT, currentPosition);
+                else {
+                    now = Const.STAT_ISPLAYING;
+                    sendCommandToService(Const.NEXT, currentPosition);
+                }
                 setDuration();
-//                }
             }
         });
 
@@ -206,10 +205,14 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
                     currentPosition = limitPosition-1;
                 else
                     currentPosition -= 1;
-//                if(now == Const.STAT_ISPLAYING) {
-                musicPlayer.move(currentPosition);
+
+                if( "00:00".equals(tv_time.getText().toString()) && now == Const.STAT_ISPLAYING)
+                    sendCommandToService(Const.PRE, currentPosition);
+                else {
+                    now = Const.STAT_ISPLAYING;
+                    sendCommandToService(Const.PRE, currentPosition);
+                }
                 setDuration();
-//                }
             }
         });
 
@@ -221,9 +224,45 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
         });
     }
 
+    // 앨범 아트 클릭시 이동
+    Intent intent = null;
+    private void moveToPlayerActivity() {
+        if(intent == null)
+            intent = new Intent(this, PlayerActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onDestroy() {
         unBindService();
         super.onDestroy();
+    }
+    private void setCurrentTime() {
+        tv_time.setText(musicPlayer.getCurrentTime());
+        if(tv_time.getText().equals(tv_duration.getText())) {
+            if(currentPosition == limitPosition-1)
+                currentPosition = 0;
+            else
+                currentPosition += 1;
+            if( "00:00".equals(tv_time.getText().toString()) && now == Const.STAT_ISPLAYING)
+                sendCommandToService(Const.NEXT, currentPosition);
+            else {
+                now = Const.STAT_ISPLAYING;
+                sendCommandToService(Const.NEXT, currentPosition);
+            }
+            setDuration();
+        }
+    }
+    @Override
+    public void setProgress() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(now == Const.STAT_ISPLAYING) {
+                    setCurrentTime();
+
+                }
+            }
+        });
     }
 }

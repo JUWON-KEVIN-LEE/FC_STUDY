@@ -18,8 +18,15 @@ import java.util.List;
 public class SongContent {
     public static final List<SongItem> ITEMS = new ArrayList<>();
 
-    public SongContent() {
+    private static SongContent songContent = null;
+    private SongContent() {
     }
+    public static SongContent getInstance() {
+        if(songContent == null)
+            songContent = new SongContent();
+        return songContent;
+    }
+
     private void addItem(SongItem item) {
         ITEMS.add(item);
     }
@@ -45,6 +52,7 @@ public class SongContent {
         }
         cursor.close();
     }
+
     private String getValue(Cursor cursor, String name) {
         int index = cursor.getColumnIndex(name);
         return cursor.getString(index);
