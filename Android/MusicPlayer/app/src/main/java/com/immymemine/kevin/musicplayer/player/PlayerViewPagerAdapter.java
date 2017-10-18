@@ -11,6 +11,8 @@ import com.immymemine.kevin.musicplayer.R;
 import com.immymemine.kevin.musicplayer.model.SongContent;
 import com.immymemine.kevin.musicplayer.utilities.CircleImageView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**

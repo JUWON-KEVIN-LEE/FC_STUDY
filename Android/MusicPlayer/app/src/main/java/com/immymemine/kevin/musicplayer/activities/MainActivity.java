@@ -1,4 +1,4 @@
-package com.immymemine.kevin.musicplayer;
+package com.immymemine.kevin.musicplayer.activities;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.immymemine.kevin.musicplayer.R;
 import com.immymemine.kevin.musicplayer.model.SongContent;
 import com.immymemine.kevin.musicplayer.player.MusicPlayer;
 import com.immymemine.kevin.musicplayer.player.PlayerActivity;
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity implements MusicFragment.OnListFr
 
     @Override
     public void init() {
+
         setContentView(R.layout.activity_main);
         // ui
         initView();

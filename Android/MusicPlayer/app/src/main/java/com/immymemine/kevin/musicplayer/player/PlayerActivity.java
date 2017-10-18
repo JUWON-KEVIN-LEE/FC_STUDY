@@ -24,7 +24,7 @@ import com.immymemine.kevin.musicplayer.utilities.Const;
 
 import java.util.List;
 
-public class PlayerActivity extends AppCompatActivity implements SeekBarThread.IObserver{
+public class PlayerActivity extends AppCompatActivity implements SeekBarThread.IObserver {
     TextView tvTitle, tvArtist, tvCurrentTime, tvDuration;
     ViewPager viewPager;
     ImageView ivList;
