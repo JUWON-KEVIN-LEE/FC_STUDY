@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.immymemine.kevin.music_player.activities.MainActivity">
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+
+        app:tabIndicatorColor="@android:color/holo_green_light"
+        app:tabIndicatorHeight="5dp"
+        app:tabSelectedTextColor="@android:color/holo_green_light"
+        app:tabTextColor="@android:color/black">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+
+        android:background="#1d525252"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+
+        <com.immymemine.kevin.music_player.custom_view.CircleImageView
+            android:id="@+id/civ_album"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1.5"
+            android:src="#1eaaaaaa"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="2dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:gravity="bottom|left|center_vertical"
+                android:singleLine="true"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/artistView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:gravity="top|bottom|left|center_vertical"
+                android:singleLine="true"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/ib_pre"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:background="@drawable/ic_previous"
+            android:onClick="pre"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/ib_start"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="play"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_play" />
+
+        <ImageButton
+            android:id="@+id/ib_next"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_next"
+            android:onClick="next"
+            android:scaleType="centerCrop" />
+
+    </LinearLayout>
+</LinearLayout>
