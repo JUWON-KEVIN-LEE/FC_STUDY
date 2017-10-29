@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.immymemine.kevin.music_player.activities.DetailActivity">
+    tools:context="com.immymemine.kevin.music_player.activities.Details">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -24,7 +24,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:background="@android:color/darker_gray"
         android:orientation="horizontal"
         android:padding="16dp">

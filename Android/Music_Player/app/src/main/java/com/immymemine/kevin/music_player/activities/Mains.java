@@ -1,7 +1,11 @@
 package com.immymemine.kevin.music_player.activities;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,16 +23,18 @@ import com.immymemine.kevin.music_player.fragments.ArtistFragment;
 import com.immymemine.kevin.music_player.fragments.GenreFragment;
 import com.immymemine.kevin.music_player.fragments.InteractionListener;
 import com.immymemine.kevin.music_player.fragments.PlayerFragment;
+import com.immymemine.kevin.music_player.service.PlayerService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends PlayerActivity implements InteractionListener {
+public class Mains extends Players implements InteractionListener {
     TextView titleView, artistView;
     ViewPager viewPager;
     TabLayout tabLayout;
     CircleImageView civ_album;
     ImageButton ibPre, ibStart, ibNext;
+    private Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,15 +43,36 @@ public class MainActivity extends PlayerActivity implements InteractionListener 
         initView();
         initViewPager();
         initTabLayout();
+
+        intent = new Intent(this, PlayerService.class);
+        bindService(intent, con, Context.BIND_AUTO_CREATE);
+    }
+    private PlayerService playerService;
+    private final ServiceConnection con = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            PlayerService.CustomBinder binder = (PlayerService.CustomBinder) service;
+            playerService = binder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            isBound = false;
+        }
+    };
+
+    public void unBind() {
+        unbindService(con);
     }
 
     @Override
     protected void onResume() {
         setNaviBar();
         if(getIsPlaying())
-            ibStart.setImageResource(R.drawable.ic_pause);
+            ibStart.setImageResource(android.R.drawable.ic_media_pause);
         else
-            ibStart.setImageResource(R.drawable.ic_play);
+            ibStart.setImageResource(android.R.drawable.ic_media_play);
         super.onResume();
     }
 
@@ -62,7 +89,7 @@ public class MainActivity extends PlayerActivity implements InteractionListener 
         civ_album.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), DetailActivity.class);
+                Intent intent = new Intent(getBaseContext(), Details.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +98,7 @@ public class MainActivity extends PlayerActivity implements InteractionListener 
         ibPre = (ImageButton) findViewById(R.id.ib_pre);
         ibStart = (ImageButton) findViewById(R.id.ib_start);
         if(getIsPlaying()) {
-            ibStart.setImageResource(R.drawable.ic_pause);
+            ibStart.setImageResource(android.R.drawable.ic_media_pause);
         }
         ibNext = (ImageButton) findViewById(R.id.ib_next);
     }
@@ -103,13 +130,13 @@ public class MainActivity extends PlayerActivity implements InteractionListener 
             return;
         }
         super.play(view);
-        ibStart.setImageResource(R.drawable.ic_pause);
+        ibStart.setImageResource(android.R.drawable.ic_media_pause);
     }
 
     @Override
     public void pause(View view) {
         super.pause(view);
-        ibStart.setImageResource(R.drawable.ic_play);
+        ibStart.setImageResource(android.R.drawable.ic_media_play);
     }
 
     @Override
@@ -127,7 +154,7 @@ public class MainActivity extends PlayerActivity implements InteractionListener 
     @Override
     public void playByList(int position) {
         super.playByList(position);
-        ibStart.setImageResource(R.drawable.ic_pause);
+        ibStart.setImageResource(android.R.drawable.ic_media_pause);
         setNaviBar();
     }
 

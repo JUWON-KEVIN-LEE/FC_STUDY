@@ -86,8 +86,7 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        if(mp.getCurrentPosition() == mp.getDuration())
-            next();
+        next();
     }
 
     public void next() {

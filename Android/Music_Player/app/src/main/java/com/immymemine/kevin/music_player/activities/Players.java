@@ -1,11 +1,5 @@
 package com.immymemine.kevin.music_player.activities;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.util.Log;
 import android.view.View;
 
 import com.immymemine.kevin.music_player.model.MusicItem;
@@ -20,10 +14,9 @@ import java.util.List;
  * Created by quf93 on 2017-10-15.
  */
 
-public class PlayerActivity extends PermissionUtil{
-    private Intent intent;
-    private PlayerService playerService;
-    private boolean isBound = false;
+public class Players extends PermissionUtil{
+
+    protected static boolean isBound = false;
     private static int mCurrentPosition = 0;
     public static List<MusicItem> data = new ArrayList<>();
     @Override
@@ -31,29 +24,6 @@ public class PlayerActivity extends PermissionUtil{
         // set ITEMS;
         if(data.size() == 0)
             data = FileUtil.readMusicList(this);
-
-        // bind to player service
-        Log.d("intent setting", "========================");
-        intent = new Intent(this, PlayerService.class);
-        bindService(intent, con, Context.BIND_AUTO_CREATE);
-    }
-
-    private final ServiceConnection con = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            PlayerService.CustomBinder binder = (PlayerService.CustomBinder) service;
-            playerService = binder.getService();
-            isBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            isBound = false;
-        }
-    };
-
-    public void unBind() {
-        unbindService(con);
     }
 
     public void play(View view) {

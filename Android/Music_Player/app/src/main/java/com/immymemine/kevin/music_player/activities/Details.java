@@ -3,7 +3,6 @@ package com.immymemine.kevin.music_player.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,7 +11,7 @@ import android.widget.SeekBar;
 import com.immymemine.kevin.music_player.R;
 import com.immymemine.kevin.music_player.adapter.DetailViewPagerAdater;
 
-public class DetailActivity extends PlayerActivity {
+public class Details extends Players {
     ViewPager viewPager;
     SeekBar playerSeekBar;
     ImageView ivList;
@@ -23,7 +22,6 @@ public class DetailActivity extends PlayerActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Log.d(data.get(30).getTitle(), "====================");
         initView();
         initViewPager();
         setSeekBar();
@@ -67,7 +65,7 @@ public class DetailActivity extends PlayerActivity {
         ibPre = (ImageButton) findViewById(R.id.ib_pre);
         ibBack = (ImageButton) findViewById(R.id.ib_back);
         ibStart = (ImageButton) findViewById(R.id.ib_start);
-        Log.d("initView in Detail","=======================" + super.getIsPlaying());
+
         if(super.getIsPlaying()) {
             runFlag = true;
             ibStart.setImageResource(android.R.drawable.ic_media_pause);

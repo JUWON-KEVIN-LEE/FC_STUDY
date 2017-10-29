@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.immymemine.kevin.music_player.activities.MainActivity">
+    tools:context="com.immymemine.kevin.music_player.activities.Mains">
 
 
     <android.support.design.widget.TabLayout
@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:background="@android:color/background_light"
 
-        app:tabIndicatorColor="@android:color/holo_green_light"
+        app:tabIndicatorColor="@color/colorAccent"
         app:tabIndicatorHeight="5dp"
-        app:tabSelectedTextColor="@android:color/holo_green_light"
+        app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextColor="@android:color/black">
 
     </android.support.design.widget.TabLayout>
@@ -33,20 +33,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
 
-        android:background="#1d525252"
+        android:background="@android:color/darker_gray"
         android:orientation="horizontal"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:padding="8dp">
 
         <com.immymemine.kevin.music_player.custom_view.CircleImageView
             android:id="@+id/civ_album"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
             android:layout_weight="1.5"
-            android:src="#1eaaaaaa"
+            android:src="@mipmap/ic_launcher_round"
             app:civ_border_color="@android:color/transparent"
             app:civ_border_width="2dp" />
 
@@ -60,7 +58,6 @@
                 android:id="@+id/titleView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:gravity="bottom|left|center_vertical"
                 android:singleLine="true"
@@ -71,7 +68,6 @@
                 android:id="@+id/artistView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:gravity="top|bottom|left|center_vertical"
                 android:singleLine="true"
@@ -83,38 +79,33 @@
             android:id="@+id/ib_pre"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:adjustViewBounds="false"
-            android:background="@drawable/ic_previous"
+            android:background="@android:color/transparent"
             android:onClick="pre"
-            android:scaleType="centerCrop" />
+            android:tint="@android:color/black"
+            app:srcCompat="@android:drawable/ic_media_previous" />
 
         <ImageButton
             android:id="@+id/ib_start"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="play"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_play" />
+            android:src="@drawable/ic_play"
+            android:tint="@android:color/black"
+            app:srcCompat="@android:drawable/ic_media_play" />
 
         <ImageButton
             android:id="@+id/ib_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_next"
+            android:background="@android:color/transparent"
             android:onClick="next"
-            android:scaleType="centerCrop" />
+            android:tint="@android:color/black"
+            app:srcCompat="@android:drawable/ic_media_next" />
 
     </LinearLayout>
 </LinearLayout>
