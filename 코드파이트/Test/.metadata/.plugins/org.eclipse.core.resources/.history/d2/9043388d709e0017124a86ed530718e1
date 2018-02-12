@@ -1,0 +1,21 @@
+package com.juwon.test;
+
+import java.util.*;
+
+class Test {
+	String reversedSumOfDigits(int p, int n) {
+	    String[] temp = new String[n];
+	    for(int i=0; i<10^)
+	    //... temp[n-1]
+        
+		return null;   
+	}
+	
+	public static void main(String[] args) {
+		String alp = "abcdefghijklmnopqrstuvwxyz";
+		alp.split("");
+		String s = "dbe";
+		System.out.println(10^2);
+		
+	}
+}

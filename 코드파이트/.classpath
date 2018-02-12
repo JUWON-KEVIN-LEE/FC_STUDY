@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="20170911/Abstract/src"/>
+	<classpathentry kind="src" path="20170911/Annotation/src"/>
+	<classpathentry kind="src" path="20170911/Board/src"/>
+	<classpathentry kind="src" path="20170911/CodeFight(20170911)/src"/>
+	<classpathentry kind="src" path="20170911/Generic/src"/>
+	<classpathentry kind="src" path="20170912/Calculator/src"/>
+	<classpathentry kind="src" path="20170912/CodeFights/src"/>
+	<classpathentry kind="src" path="20170915/CodeFights/src"/>
+	<classpathentry kind="src" path="20170915/Test/src"/>
+	<classpathentry kind="src" path="Test/Test/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="20170911/Abstract/bin"/>
+</classpath>

@@ -1,0 +1,17 @@
+package com.juwon.test;
+
+import java.util.*;
+
+class Test {
+//	boolean alphabetSubstring(String s) {
+//	    
+//	}
+	
+	public static void main(String[] args) {
+		String alp = "abcdefghijklmnopqrstuvwxyz";
+		alp.split("");
+		String s = "dbe";
+		System.out.println(alp.contains(s));
+		
+	}
+}

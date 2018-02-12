@@ -1,0 +1,10 @@
+package com.juwon.codefights_study;
+
+public class MakeArrayConsecutive {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

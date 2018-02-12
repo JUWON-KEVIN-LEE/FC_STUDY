@@ -1,0 +1,9 @@
+
+public class Test {
+	public void main(String[] args) {
+		String str = "5";
+		String[] array = str.split(".");
+		for(String item : array)
+			System.out.print(item);
+	}
+}

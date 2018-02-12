@@ -1,0 +1,10 @@
+public class Test {
+	public static void main(String[] args) {
+		String str = "1,000";
+		str.replace(",", "");
+		System.out.println(str);
+		String[] array = str.split(".");
+		for(String item : array)
+			System.out.print(item+" ");
+	}
+}

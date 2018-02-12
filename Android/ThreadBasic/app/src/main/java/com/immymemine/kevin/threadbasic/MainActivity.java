@@ -12,25 +12,33 @@ import android.widget.SeekBar;
  */
 public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
+    WorkerThread worker;
+    // LooperThread thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        thread = new LooperThread();
+//        thread.start();
+
+        worker = WorkerThread.getInstance();
+        worker.setHandler(handler);
+        worker.start();
+
+//        worker.addHandler(handler);
+//        worker.addHandler(thread.mHandler);
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-
-        final Rotater rotater = new Rotater(handler);
-        rotater.start();
         seekBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rotater.RUNNING=false;
+                worker.RUNNING=false;
             }
         });
     }
 
     public static final int ACTION_SET = 1004;
-    // SeekBar 를 변경하는 Handler 작성..
+    // SeekBar 를 변경하는 Handler
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -43,31 +51,4 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-}
-
-class Rotater extends Thread {
-    Handler handler;
-    boolean RUNNING = true;
-    public Rotater(Handler handler) {
-        this.handler = handler;
-    }
-
-    @Override
-    public void run() { // start method 가 호출되면 실행되는 method..
-        while(RUNNING) {
-            for (int i = 0; i < 60; i++) {
-                // send message to Handler...
-                Message message = new Message();
-                message.what = MainActivity.ACTION_SET;
-                handler.sendMessage(message);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    // run 이 외의 method 들은 sub thread 에서 실행되지 않는다.
 }

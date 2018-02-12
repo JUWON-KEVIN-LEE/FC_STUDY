@@ -1,0 +1,28 @@
+package com.juwon.test;
+
+import java.util.*;
+
+class Test {
+	String reversedSumOfDigits(int p, int n) {
+	    int result = 0;
+	    String[] arr = new String[n];
+	    int start = (int)Math.pow(10, n-1);
+	    for(int i=start; i<Math.pow(10, n);i++) {
+	    	arr = String.valueOf(i).split("");
+	    	for(String item:arr)
+	    		result += Integer.parseInt(item);
+	    	System.out.println(result);
+	    	if(result == p) {
+	    		return i+"";
+	    	}
+	    }
+        
+		return -1+"";
+	}
+	
+	public static void main(String[] args) {
+		Test t = new Test();
+		String s = t.reversedSumOfDigits(5, 3);
+		System.out.println(s);
+	}
+}
